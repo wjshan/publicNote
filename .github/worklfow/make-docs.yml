@@ -2,7 +2,7 @@ name: Make Docs
 on: 
   push:
       branches:
-        - main
+        - master
 jobs:
   Build-Docs:
     strategy:
