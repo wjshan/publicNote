@@ -4,48 +4,94 @@ repo_url: https://github.com/wjshan/publicNote
 theme: 
   name: material
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      toggle:
-        icon: material/weather-night
-        name: 暗色模式
-    - media: "(prefers-color-scheme: dark)"
-      primary: teal
-      scheme: slate
-      toggle:
-        icon: material/weather-sunny
-        name: 亮色模式
-  language: 'zh'
+    scheme: dracula
+    primary: deep purple
+    accent: deep purple
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+  pymdownx:
+    sponsor: "https://github.com/sponsors/facelessuser"
 markdown_extensions:
-  - admonition
-  - codehilite:
-      guess_lang: false
-      linenums: false
-  - toc:
-      permalink: true
-  - meta
-  - pymdownx.extra
-  - pymdownx.arithmatex
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.snippets
-  - pymdownx.tasklist
-  - pymdownx.tilde
-  - pymdownx.progressbar
-  - pymdownx.superfences: #绘图插件
+  - markdown.extensions.toc:
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
+      permalink: ""
+  - markdown.extensions.admonition:
+  - markdown.extensions.smarty:
+      smart_quotes: false
+  - pymdownx.betterem:
+  - markdown.extensions.attr_list:
+  - markdown.extensions.def_list:
+  - markdown.extensions.tables:
+  - markdown.extensions.abbr:
+  - markdown.extensions.footnotes:
+  - markdown.extensions.md_in_html:
+  - pymdownx.superfences:
+      preserve_tabs: true
       custom_fences:
+        # Mermaid diagrams
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
         - name: math
           class: arithmatex
-          arithmatex: !!python/name:pymdownx.arithmatex.arithmatex_inline_format
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format {kwds: {mode: generic, tag: pre}}
+  - pymdownx.highlight:
+      extend_pygments_lang:
+        - name: php-inline
+          lang: php
+          options:
+            startinline: true
+        - name: pycon3
+          lang: pycon
+          options:
+            python3: true
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite:
+      custom_inline:
+        - name: math
+          class: arithmatex
+          format: !!python/object/apply:pymdownx.arithmatex.arithmatex_inline_format {kwds: {mode: generic}}
+  - pymdownx.tilde:
+  - pymdownx.caret:
+  - pymdownx.smartsymbols:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.escapeall:
+      hardbreak: True
+      nbsp: True
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.progressbar:
+  - pymdownx.arithmatex:
+      generic: true
+      block_tag: 'pre'
+  - pymdownx.mark:
+  - pymdownx.striphtml:
+  - pymdownx.keys:
+      separator: "\uff0b"
+  - pymdownx.details:
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.saneheaders:
+
+extra_css:
+  # - https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.css
+  # - assets/pymdownx-extras/extra-01b6b80344.css
+extra_javascript:
+  - https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js
+  # - https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  # - assets/pymdownx-extras/extra-loader-9e2c67b9.js
+
+plugins:
+  - search
+  # - git-revision-date-localized
+  - minify:
+      minify_html: true
