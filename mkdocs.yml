@@ -4,9 +4,16 @@ repo_url: https://github.com/wjshan/publicNote
 theme: 
   name: material
   palette:
-    scheme: dracula
-    primary: deep purple
-    accent: deep purple
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 亮色模式
   font:
     text: Roboto
     code: Roboto Mono
@@ -95,3 +102,5 @@ plugins:
   # - git-revision-date-localized
   - minify:
       minify_html: true
+  - mkdocs-jupyter:
+      allow_errors: true
