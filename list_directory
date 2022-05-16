@@ -15,7 +15,7 @@ def list_directory(base_path,level=0,ignores:typing.List=None):
             yield from list_directory(file_path,level+1,ignores=ignores)
 if __name__ == "__main__":
     doc_strings = []
-    for path,name,level in list_directory("docs",0,[".DS_Store","assets",".ipynb_checkpoints"]):
+    for path,name,level in list_directory("docs",0,[".DS_Store","assets",".ipynb_checkpoints",".gitignore"]):
         sub_name,_ = os.path.splitext(name)
         path = path.replace("docs/","")
         http_path = f"http://public-note.danwj.cn/{path}/{sub_name}"
