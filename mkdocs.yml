@@ -48,6 +48,7 @@ markdown_extensions:
           class: arithmatex
           format: !!python/object/apply:pymdownx.arithmatex.arithmatex_fenced_format {kwds: {mode: generic, tag: pre}}
   - pymdownx.highlight:
+      use_pygments: true
       extend_pygments_lang:
         - name: php-inline
           lang: php
@@ -92,7 +93,7 @@ extra_css:
   # - assets/pymdownx-extras/extra-01b6b80344.css
 extra_javascript:
   - assets/javascripts/mathjax.js
-  - https://unpkg.com/mermaid@8.13.3/dist/mermaid.min.js
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
   # - https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
@@ -106,4 +107,5 @@ plugins:
       minify_html: true
   - mkdocs-jupyter:
       allow_errors: true
+      execute: false # 自动执行
       # include_source: True
