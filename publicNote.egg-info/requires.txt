@@ -4,3 +4,7 @@ mkdocs-material
 nbconvert
 pandoc
 jupytext
+
+[dev]
+jupyterlab
+notebook

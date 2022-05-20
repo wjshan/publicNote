@@ -1,7 +1,7 @@
 site_name: 公开的笔记本
 site_url: http://public-note.danwj.cn/
 repo_url: https://github.com/wjshan/publicNote
-theme: 
+theme:
   name: material
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -26,7 +26,7 @@ theme:
 markdown_extensions:
   - markdown.extensions.toc:
       slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
-      permalink: ""
+      permalink: true
   - markdown.extensions.admonition:
   - markdown.extensions.smarty:
       smart_quotes: false
@@ -93,19 +93,19 @@ extra_css:
   # - assets/pymdownx-extras/extra-01b6b80344.css
 extra_javascript:
   - assets/javascripts/mathjax.js
-  - https://unpkg.com/mermaid/dist/mermaid.min.js
-  # - https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+#  - https://cdn.jsdelivr.net/npm/katex@0.13.18/dist/katex.min.js
+  - https://unpkg.com/mermaid/dist/mermaid.min.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
   # - assets/pymdownx-extras/extra-loader-9e2c67b9.js
-  
+
 
 plugins:
   - search
   # - git-revision-date-localized
   - minify:
       minify_html: true
-  - mkdocs-jupyter:
+  - mkdocs_jupyter:
       allow_errors: true
       execute: false # 自动执行
       # include_source: True
