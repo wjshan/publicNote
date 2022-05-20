@@ -1,3 +1,0 @@
-[mkdocs.plugins]
-mkdocs_jupyter = plugins.mkdocs_jupyter.plugin:Plugin
-

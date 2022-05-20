@@ -1,7 +1,0 @@
-setup.py
-publicNote.egg-info/PKG-INFO
-publicNote.egg-info/SOURCES.txt
-publicNote.egg-info/dependency_links.txt
-publicNote.egg-info/entry_points.txt
-publicNote.egg-info/requires.txt
-publicNote.egg-info/top_level.txt
