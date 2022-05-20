@@ -32,10 +32,10 @@ def read_requirements(path):
 
 setup(
     name="publicNote",
-    version=read(".", "VERSION"),
+    version=read("VERSION"),
     description="Note some simple idea",
     url="https://github.com/wjshan/publicNote",
-    long_description=read(".","README.md"),
+    long_description=read("readme.md"),
     long_description_content_type="text/markdown",
     author="wjshan",
     packages=find_packages(exclude=["tests", ".github"]),
