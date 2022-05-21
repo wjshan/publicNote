@@ -1,6 +1,6 @@
 import os
 import pathlib
-
+import logging
 import markdown
 import mkdocs
 from mkdocs.config import config_options
@@ -11,6 +11,7 @@ from mkdocs.structure.toc import get_toc
 
 from . import convert
 
+logger = logging.getLogger("mkdocs.mkdocs-jupyter")
 
 class NotebookFile(File):
     """
@@ -51,6 +52,9 @@ class Plugin(mkdocs.plugins.BasePlugin):
         ext = os.path.splitext(str(file.abs_src_path))[-1]
         if ext not in self._supported_extensions:
             return False
+        if not os.path.getsize(file.abs_src_path):
+            logger.info(f"Ignore empty file {file.abs_src_path}")
+            return False
         srcpath = pathlib.PurePath(file.abs_src_path)
         include = None
         ignore = None
@@ -74,7 +78,7 @@ class Plugin(mkdocs.plugins.BasePlugin):
         return ret
 
     def on_pre_page(self, page, config, files):
-
+        
         if self.should_include(page.file):
             ignore_h1_titles = self.config["ignore_h1_titles"]
             kernel_name = self.config["kernel_name"]
