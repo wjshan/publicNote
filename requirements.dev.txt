@@ -1,2 +1,4 @@
 jupyterlab
 notebook
+rich
+ipywidgets
