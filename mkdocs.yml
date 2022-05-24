@@ -109,3 +109,4 @@ plugins:
       allow_errors: true
       execute: false # 自动执行
       # include_source: True
+  - mkdocs_last_update:

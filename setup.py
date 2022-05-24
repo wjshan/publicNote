@@ -2,7 +2,7 @@
 import io
 import os
 
-from setuptools import find_packages, setup
+from setuptools import setup
 
 
 def read(*paths, **kwargs):
@@ -12,8 +12,6 @@ def read(*paths, **kwargs):
     >>> read("README.md")
     ...
     """
-
-    content = ""
     with io.open(
             os.path.join(os.path.dirname(__file__), *paths),
             encoding=kwargs.get("encoding", "utf8"),
@@ -23,26 +21,38 @@ def read(*paths, **kwargs):
 
 
 def read_requirements(path):
-    return [
-        line.strip()
-        for line in read(path).split("\n")
-        if not line.startswith(('"', "#", "-", "git+"))
-    ]
+    requirements = []
+    for line in read(path).split("\n"):
+        if line.startswith('.'):
+            path = os.path.abspath(os.path.join(os.path.dirname(__file__), line))
+            _, package_name = os.path.split(path)
+            requirements.append(f"{package_name} @ file://localhost{path}")
+        elif line.startswith(('"', "#", "-", "git+")):
+            continue
+        else:
+            requirements.append(line)
+    return requirements
 
 
 setup(
     name="publicNote",
-    version=read("VERSION"),
+    version=read(".", "VERSION"),
     description="Note some simple idea",
     url="https://github.com/wjshan/publicNote",
     long_description=read("readme.md"),
     long_description_content_type="text/markdown",
     author="wjshan",
-    packages=find_packages(exclude=["tests", ".github"]),
+    # packages=["mkdocs_jupyter"],
+    # package_dir={"mkdocs_jupyter": "plugins/mkdocs_jupyter"},
     install_requires=read_requirements("requirements.txt"),
+    # dependency_links=[
+    #     # location to your egg file
+    #     os.path.join(os.getcwd(), 'plugins/mkdocs_jupyter', 'mkdocs_jupyter.egg-info')
+    # ],
     entry_points={
         'mkdocs.plugins': [
             'mkdocs_jupyter = plugins.mkdocs_jupyter.plugin:Plugin',
+            "mkdocs_last_update = plugins.mkdocs_last_update.plugin:LastModifyAt",
         ]
     },
     extras_require={
