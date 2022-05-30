@@ -1,6 +1,7 @@
+import logging
 import os
 import pathlib
-import logging
+
 import markdown
 import mkdocs
 from mkdocs.config import config_options
@@ -12,6 +13,7 @@ from mkdocs.structure.toc import get_toc
 from . import convert
 
 logger = logging.getLogger("mkdocs.mkdocs-jupyter")
+
 
 class NotebookFile(File):
     """
@@ -78,7 +80,7 @@ class Plugin(mkdocs.plugins.BasePlugin):
         return ret
 
     def on_pre_page(self, page, config, files):
-        
+
         if self.should_include(page.file):
             ignore_h1_titles = self.config["ignore_h1_titles"]
             kernel_name = self.config["kernel_name"]
@@ -98,7 +100,8 @@ class Plugin(mkdocs.plugins.BasePlugin):
 
             def new_render(self, config, files):
                 extensions = [
-                                 _RelativePathExtension(self.file, files)
+                                 _RelativePathExtension(self.file, files),
+                                 "meta"
                              ] + config['markdown_extensions']
                 extension_configs = config['mdx_configs'] or {}
 
@@ -157,9 +160,9 @@ def get_nb_toc(fpath, extensions, extension_configs):
     It does that by converting first to MD
     """
     body = convert.nb2md(fpath)
-    md = markdown.Markdown(extensions=extensions,extension_configs=extension_configs)
+    md = markdown.Markdown(extensions=extensions, extension_configs=extension_configs)
     md.convert(body)
-    toc_tokens = getattr(md,"toc_tokens",[])
+    toc_tokens = getattr(md, "toc_tokens", [])
     toc = get_toc(toc_tokens)
     title = None
     for token in toc_tokens:
