@@ -53,6 +53,7 @@ setup(
         'mkdocs.plugins': [
             'mkdocs_jupyter = plugins.mkdocs_jupyter.plugin:Plugin',
             "mkdocs_last_update = plugins.mkdocs_last_update.plugin:LastModifyAt",
+            "custom_extension_plugin = plugins.custom_extension_plugin:CustomExtensionPlugin",
         ]
     },
     extras_require={

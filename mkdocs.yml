@@ -25,6 +25,7 @@ theme:
   pymdownx:
     sponsor: "https://github.com/sponsors/facelessuser"
 markdown_extensions:
+  - meta:
   - markdown.extensions.toc:
       slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}}
       permalink: true
@@ -111,3 +112,6 @@ plugins:
       execute: false # 自动执行
       # include_source: True
   - mkdocs_last_update:
+  - custom_extension_plugin:
+      include_extensions:
+        - plugins.local_file

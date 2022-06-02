@@ -101,7 +101,6 @@ class Plugin(mkdocs.plugins.BasePlugin):
             def new_render(self, config, files):
                 extensions = [
                                  _RelativePathExtension(self.file, files),
-                                 "meta"
                              ] + config['markdown_extensions']
                 extension_configs = config['mdx_configs'] or {}
 
