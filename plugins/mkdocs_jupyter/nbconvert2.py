@@ -203,8 +203,9 @@ def custom_highlight_code(source, language=None, metadata=None):
     formatter = HtmlFormatter(cssclass="highlight-ipynb hl-" + language)
     output = _pygments_highlight(source, formatter, language, metadata)
 
-    clipboard_copy_txt = f"""<div id="cell-{cell_id}" class="clipboard-copy-txt">{source}</div>
+    clipboard_copy_txt = f"""<pre id="cell-{cell_id}" class="clipboard-copy-txt" >{source}</pre>
     """
+    # clipboard_copy_txt.replace('\n','\\n')
     return output + clipboard_copy_txt
 
 

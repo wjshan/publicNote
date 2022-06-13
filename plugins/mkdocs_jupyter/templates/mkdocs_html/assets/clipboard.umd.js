@@ -78,6 +78,8 @@
     function copyTarget(content) {
       if (content instanceof HTMLInputElement || content instanceof HTMLTextAreaElement) {
         return copyText(content.value);
+      }else if(content instanceof HTMLDivElement){
+        return copyText(content.textContent)
       } else if (content instanceof HTMLAnchorElement && content.hasAttribute('href')) {
         return copyText(content.href);
       } else {
