@@ -28,6 +28,7 @@ jobs:
         run: |
           cd site
           zip -r PublicNote.zip *
+          ls -h PublicNote.zip
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:  
@@ -45,5 +46,4 @@ jobs:
           port: 22
           script: |
             cd /home/docker/nginx-server/static/PublicNote
-            ls -al
-            unzip PublicNote.zip
+            unzip -o PublicNote.zip
