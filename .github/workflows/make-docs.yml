@@ -25,7 +25,7 @@ jobs:
       - name: build docs
         run: make build
       - name: deploy file to server
-        uses: wlixcc/SFTP-Deploy-Action@v1.0 
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:  
           username: 'ubuntu'
           server: '${{ secrets.TENCENT_CE_LGQ5_IP }}' 
