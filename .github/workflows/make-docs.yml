@@ -24,11 +24,26 @@ jobs:
         run: make github_install
       - name: build docs
         run: make build
+      - name: zip site
+        run: |
+          cd site
+          zip -r PublicNote.zip *
       - name: deploy file to server
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:  
           username: 'ubuntu'
           server: '${{ secrets.TENCENT_CE_LGQ5_IP }}' 
           ssh_private_key: ${{ secrets.TENCENT_CE_LGQ5 }} 
-          local_path: './site/*'
+          local_path: './site/PublicNote.zip'
           remote_path: '/home/docker/nginx-server/static/PublicNote'
+      - name: upzip in server
+        uses: appleboy/ssh-action@master
+        with:
+          host: '${{ secrets.TENCENT_CE_LGQ5_IP }}' 
+          username: 'ubuntu'
+          key:  ${{ secrets.TENCENT_CE_LGQ5 }} 
+          port: 22
+          script: |
+            cd /home/docker/nginx-server/static/PublicNote
+            ls -al
+            unzip PublicNote.zip
