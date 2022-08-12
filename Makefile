@@ -14,4 +14,4 @@ build:
 	$(ENV_PREFIX)mkdocs build
 
 build_docker:
-	docker-compose -f docker-compose.yml up && docker-compose -f docker-compose.yml down && docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+	docker-compose -f docker-compose.yml up && docker-compose -f docker-compose.yml down
