@@ -8,3 +8,4 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
     - .:/home/app
+    - /home/app/publicNote.egg-info
