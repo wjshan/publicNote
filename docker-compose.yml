@@ -1,7 +1,8 @@
 version: '3.9'
 
 services:
-  public_note:
+  PublicNote:
+    image: public_note:last
     build:
       context: .
       dockerfile: Dockerfile.dev
