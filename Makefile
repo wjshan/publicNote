@@ -1,5 +1,5 @@
 .ONESHELL:
-ENV_PREFIX=$(shell python -c "if __import__('pathlib').Path('.venv/bin/pip').exists(): print('.venv/bin/')")
+ENV_PREFIX=""
 
 serve:
 	$(ENV_PREFIX)mkdocs serve
@@ -12,3 +12,7 @@ github_install:
 
 build:
 	$(ENV_PREFIX)mkdocs build
+
+
+build_docker:
+	docker-compose -f docker-compose.yml up && docker-compose -f docker-compose.yml down

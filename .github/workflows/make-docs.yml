@@ -13,30 +13,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - run: echo "🎉 start build"
-      - name: Check out repository code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # 读取完整历史,如果不是0则读取最新的
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: install package
-        run: make github_install
-      - name: build docs
-        run: make build
-      - name: zip site
-        run: |
-          cd site
-          zip -r PublicNote.zip *
-          ls -h PublicNote.zip
-      - name: deploy file to server
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:  
-          username: 'ubuntu'
-          server: '${{ secrets.TENCENT_CE_LGQ5_IP }}' 
-          ssh_private_key: ${{ secrets.TENCENT_CE_LGQ5 }} 
-          local_path: './site/PublicNote.zip'
-          remote_path: '/home/docker/nginx-server/static/PublicNote'
       - name: upzip in server
         uses: appleboy/ssh-action@master
         with:
@@ -46,4 +22,5 @@ jobs:
           port: 22
           script: |
             cd /home/docker/nginx-server/static/PublicNote
-            unzip -o PublicNote.zip
+            git pull origin master
+            make build_docker

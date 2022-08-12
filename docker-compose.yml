@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  public_note:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+    - .:/home/app

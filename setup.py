@@ -41,6 +41,7 @@ setup(
     url="https://github.com/wjshan/publicNote",
     long_description=read("readme.md"),
     long_description_content_type="text/markdown",
+    py_modules=[],
     author="wjshan",
     # packages=["mkdocs_jupyter"],
     # package_dir={"mkdocs_jupyter": "plugins/mkdocs_jupyter"},
