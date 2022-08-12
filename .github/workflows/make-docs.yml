@@ -23,4 +23,4 @@ jobs:
           script: |
             cd /home/docker/nginx-server/static/PublicNote
             git pull origin master
-            make build_docker
+            sudo make build_docker
